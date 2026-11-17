@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f7f5">
+<title>HCP Intelligence — Decision Lab</title>
+<style>
+:root{--ink:#172b27;--muted:#60716c;--line:#dce5df;--paper:#fff;--wash:#f4f7f4;--green:#146b52;--green2:#e8f4ee;--amber:#9a6513;--amberbg:#fbf3e5;--red:#a63d37;--redbg:#faecea;--blue:#355f91;--shadow:0 12px 32px #1c36260c;--radius:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{min-height:100vh}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 30px;gap:28px;position:sticky;top:0;z-index:5}.brand{display:flex;gap:11px;align-items:center;font-weight:750;letter-spacing:-.02em;white-space:nowrap}.mark{width:34px;height:34px;background:var(--green);color:white;border-radius:10px;display:grid;place-items:center;font-weight:800}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:550;letter-spacing:.02em}.nav{display:flex;gap:4px;overflow:auto}.nav button{background:transparent;border:0;padding:9px 12px;border-radius:9px;color:var(--muted);white-space:nowrap;font-size:13px}.nav button.active,.nav button:hover{background:var(--green2);color:var(--green);font-weight:650}.topright{margin-left:auto;display:flex;align-items:center;gap:10px}.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:var(--amberbg);color:#78500e;font-size:11px;font-weight:700;white-space:nowrap}.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:#c78d24}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 12px;border-radius:9px;font-weight:650}.btn:hover{border-color:#9bb7a7;background:#f9fcfa}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.btn.primary:hover{background:#0e5943}.btn.small{padding:6px 9px;font-size:12px}.btn.danger{color:var(--red)}.layout{max-width:1440px;margin:auto;padding:28px 30px 60px}.page{display:none}.page.active{display:block}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:22px}.heading h1{font-size:29px;letter-spacing:-.04em;line-height:1.15;margin:6px 0}.heading p{margin:0;color:var(--muted);max-width:760px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.notice{border:1px solid #eddaad;background:#fffbf2;padding:11px 14px;border-radius:12px;color:#664e20;font-size:12px;margin:0 0 18px}.notice strong{color:#513a10}.grid{display:grid;gap:16px}.grid.cards{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.grid.two{grid-template-columns:1.25fr .75fr}.grid.equal{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.card h2,.card h3{margin:0 0 12px;letter-spacing:-.02em}.card h2{font-size:16px}.card h3{font-size:14px}.metric-label{font-size:12px;color:var(--muted);font-weight:600}.metric{font-size:27px;font-weight:760;letter-spacing:-.04em;margin:4px 0}.metric-note{font-size:11px;color:var(--muted)}.mini-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section-title h2{margin:0}.section-title p{margin:3px 0 0;color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.field{display:flex;flex-direction:column;gap:5px;min-width:120px}.field label{font-size:11px;color:var(--muted);font-weight:650}.field input,.field select{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--ink);min-height:36px}.field input:focus,.field select:focus{outline:2px solid #b5d6c6;border-color:var(--green)}.field.compact{min-width:150px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{background:#f7faf8;text-align:left;color:#536760;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:10px 11px;position:sticky;top:0}td{padding:10px 11px;border-top:1px solid #edf1ed}tbody tr:hover{background:#fbfdfb}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.doctor{font-weight:700}.sub{color:var(--muted);font-size:10px}.pill{display:inline-flex;padding:3px 7px;border-radius:99px;background:#eef2ef;color:#53645d;font-weight:700;font-size:10px}.pill.high{background:#e5f3eb;color:#176546}.pill.medium{background:#f8f0dd;color:#85601a}.pill.low{background:#faeae8;color:#963c35}.pill.audit{background:#eaf0f8;color:#355f91}.barline{height:7px;background:#edf1ee;border-radius:99px;overflow:hidden;min-width:80px}.barline span{display:block;height:100%;background:#4b9b76;border-radius:99px}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.legend span{display:flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:50%;background:#4b9b76}.dot.orange{background:#d39234}.dot.gray{background:#91a19a}.chart{width:100%;height:auto;display:block}.chart text{font:10px system-ui;fill:#60716c}.chart .gridline{stroke:#e6ece7;stroke-width:1}.chart .green{fill:#4b9b76}.chart .orange{fill:#e2a04b}.chart .blue{fill:#6c91bd}.tablerow{cursor:pointer}.muted{color:var(--muted)}.smalltext{font-size:11px;color:var(--muted)}.empty{text-align:center;color:var(--muted);padding:28px}.splitlist{display:grid;gap:10px}.listrow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #edf1ed}.listrow:last-child{border:0}.listrow strong{display:block}.progress{height:9px;background:#edf1ee;border-radius:999px;overflow:hidden}.progress>span{display:block;height:100%;background:var(--green);border-radius:inherit}.control-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #edf1ed}.control-row:last-child{border:0}.control-row input[type=range]{width:170px;accent-color:var(--green)}.control-row input[type=checkbox]{accent-color:var(--green);width:16px;height:16px}.value{font-weight:750;min-width:32px;text-align:right;font-variant-numeric:tabular-nums}.step{display:flex;gap:12px;margin:13px 0;align-items:flex-start}.step b{width:24px;height:24px;border-radius:50%;background:var(--green2);color:var(--green);display:grid;place-items:center;flex:none}.kpirow{display:flex;align-items:center;gap:12px;margin:10px 0}.kpirow>span:first-child{width:110px;font-size:11px;color:var(--muted)}.kpirow .barline{flex:1}.callout{background:#f6faf7;border:1px solid #dcebe1;padding:13px;border-radius:11px;font-size:12px}.callout.warn{background:#fffbf2;border-color:#efdfb9}.callout.error{background:var(--redbg);border-color:#edc8c4}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f4f7f5;padding:10px;border-radius:9px;overflow-wrap:anywhere;font-size:11px}.tabsline{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:16px}.tabsline button{background:transparent;border:0;padding:9px 12px;color:var(--muted);border-bottom:2px solid transparent}.tabsline button.active{border-color:var(--green);color:var(--green);font-weight:700}.waterfall{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}.waterfall div{border:1px solid var(--line);border-radius:11px;padding:12px}.waterfall strong{display:block;font-size:17px}.waterfall span{font-size:10px;color:var(--muted)}.switch{display:flex;gap:6px;align-items:center}.foot{margin-top:20px;color:#76857f;font-size:10px;text-align:center}.two-columns{columns:2;column-gap:30px}.checkitem{break-inside:avoid;padding:9px 0;border-bottom:1px solid #edf1ed}.checkitem b{display:block;font-size:12px}.checkitem span{font-size:11px;color:var(--muted)}.modalback{display:none;position:fixed;inset:0;background:#10231f70;z-index:10;align-items:center;justify-content:center;padding:18px}.modalback.open{display:flex}.modal{width:min(820px,100%);max-height:90vh;overflow:auto;background:white;border-radius:18px;padding:22px;box-shadow:0 30px 100px #10231f55}.modalhead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.close{border:0;background:#f1f4f1;border-radius:8px;padding:7px 10px}.toast{position:fixed;bottom:20px;right:20px;background:#183c30;color:#fff;padding:11px 15px;border-radius:10px;box-shadow:var(--shadow);display:none;z-index:20}.toast.show{display:block}.assistant-backdrop{display:none;position:fixed;inset:0;background:#10231f55;z-index:30}.assistant-backdrop.open{display:block}.assistant-panel{position:fixed;z-index:31;right:0;top:0;height:100dvh;width:min(460px,100vw);background:#fff;box-shadow:-18px 0 50px #10231f22;display:flex;flex-direction:column;transform:translateX(105%);transition:transform .22s ease}.assistant-panel.open{transform:translateX(0)}.assistant-head{padding:18px 18px 12px;border-bottom:1px solid var(--line)}.assistant-head h2{margin:0;font-size:17px}.assistant-head p{margin:5px 0 0;font-size:11px;color:var(--muted)}.assistant-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.assistant-label{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.assistant-disclaimer{background:#fffbf2;border:1px solid #eddaad;border-radius:9px;padding:8px 10px;margin-top:11px;color:#664e20;font-size:10px}.assistant-messages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.assistant-message{white-space:pre-wrap;overflow-wrap:anywhere;max-width:95%;padding:11px 12px;border-radius:12px;font-size:12px}.assistant-message.assistant{align-self:flex-start;background:#f3f7f4;border:1px solid #e3ebe5}.assistant-message.user{align-self:flex-end;background:var(--green);color:white}.assistant-message small{display:block;margin-top:7px;opacity:.72;font-size:9px}.assistant-suggestions{padding:0 16px 12px;display:flex;gap:6px;flex-wrap:wrap}.assistant-suggestions button{font-size:10px;line-height:1.3;border:1px solid var(--line);border-radius:999px;background:#fff;padding:6px 9px;color:var(--muted)}.assistant-suggestions button:hover{border-color:var(--green);color:var(--green)}.assistant-form{border-top:1px solid var(--line);padding:12px 16px 16px}.assistant-compose{display:flex;gap:8px;align-items:flex-end}.assistant-compose textarea{resize:vertical;min-height:42px;max-height:130px;flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:12px}.assistant-compose textarea:focus{outline:2px solid #b5d6c6;border-color:var(--green)}.assistant-form .smalltext{margin-top:7px;font-size:9px}.assistant-open{white-space:nowrap}@media(max-width:1050px){.topbar{padding:0 16px;gap:12px}.layout{padding:20px 16px 50px}.grid.cards{grid-template-columns:repeat(2,1fr)}.grid.two,.grid.equal{grid-template-columns:1fr}}@media(max-width:650px){.topbar{height:auto;min-height:64px;flex-wrap:wrap;padding:10px 12px;gap:8px}.nav{order:3;width:100%}.topright .badge{display:none}.heading{display:block}.actions{margin-top:12px}.grid.cards{grid-template-columns:1fr 1fr}.card{padding:14px}.metric{font-size:22px}.waterfall{grid-template-columns:repeat(2,1fr)}.two-columns{columns:1}.assistant-open{padding:6px 8px;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="mark">H</div><div>HCP Intelligence<small>Decision Lab · synthetic demo</small></div></div>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="active" data-page="overview">Overview</button><button data-page="estimates">Estimates</button><button data-page="validation">Validation</button><button data-page="priorities">Priorities</button><button data-page="governance">Governance</button>
+    </nav>
+    <div class="topright"><span class="badge">Synthetic data only</span><button class="btn small assistant-open" id="assistant-open" aria-haspopup="dialog">Ask AI</button><button class="btn small" id="reset">Reset demo</button></div>
+  </header>
+  <main class="layout">
+    <div class="notice"><strong>Illustrative prototype, not a client deployment.</strong> Every doctor, territory, sales figure, audit result and validation metric on this page is generated synthetic data. No patient data is used. Do not use these rankings to make field or clinical decisions.</div>
+    <section class="page active" id="page-overview">
+      <div class="heading"><div><div class="eyebrow">Commercial intelligence · India</div><h1>Make the next doctor call an informed one.</h1><p>A transparent, uncertainty-aware decision layer above your CRM. Explore doctor-level potential estimates, hold-out validation, ranked priorities and governance in one synthetic territory.</p></div><div class="actions"><button class="btn" data-goto="estimates">Inspect estimation method</button><button class="btn primary" data-goto="validation">Run back-test</button></div></div>
+      <div class="grid cards" id="overview-kpis"></div>
+      <div class="grid two">
+        <div class="card"><div class="section-title"><div><h2>Brick potential and observed sales</h2><p>Netted addressable retail category value · monthly · illustrative</p></div><span class="pill audit">3 synthetic bricks</span></div><div id="brick-chart"></div><div class="legend"><span><i class="dot"></i>Estimated addressable demand</span><span><i class="dot orange"></i>Observed brick category sales</span></div></div>
+        <div class="card"><div class="section-title"><div><h2>What this demo demonstrates</h2><p>Methods and controls are visible, not implied.</p></div></div>
+          <div class="step"><b>1</b><div><strong>Estimate</strong><div class="smalltext">Allocate net brick demand across prescribers using disclosed weights; show an 80% resampling interval.</div></div></div>
+          <div class="step"><b>2</b><div><strong>Test blind</strong><div class="smalltext">Compare estimates with a held-out synthetic audit subset; report coverage, rank correlation and top-decile capture.</div></div></div>
+          <div class="step"><b>3</b><div><strong>Act with guardrails</strong><div class="smalltext">Rank doctors, cap call frequency, export a tour-plan CSV, and review claims and audit events.</div></div></div>
+          <div class="callout warn" style="margin-top:12px"><strong>Method limitation:</strong> the prototype uses a seeded parametric resampling demonstration—not a fitted or client-calibrated predictive model. “80% interval” is a target coverage level, not a guarantee.</div>
+        </div>
+      </div>
+      <div class="grid equal" style="margin-top:16px">
+        <div class="card"><div class="section-title"><div><h2>Highest estimated potential</h2><p>Uncertainty shown beside each estimate</p></div><button class="btn small" data-goto="estimates">View all</button></div><div id="top-doctors"></div></div>
+        <div class="card"><div class="section-title"><div><h2>Decision checks</h2><p>Issues surfaced before using a list</p></div></div><div id="decision-checks"></div></div>
+      </div>
+    </section>
+    <section class="page" id="page-estimates">
+      <div class="heading"><div><div class="eyebrow">Method · constrained allocation</div><h1>Doctor estimates, with uncertainty.</h1><p>Net retail demand is allocated within each brick. Scores show relative priority; estimated potential is a separate quantity. Use the controls to see the allocation and intervals respond.</p></div><div class="actions"><button class="btn" id="rerun">Re-run 1,000 resamples</button><button class="btn primary" id="export-estimates">Export estimates CSV</button></div></div>
+      <div class="grid two">
+        <div class="card"><div class="section-title"><div><h2>Transparent allocation assumptions</h2><p>Illustrative starting weights; sums are normalized within each brick.</p></div></div><div id="weight-controls"></div><div class="formula" id="formula"></div><p class="smalltext">Netted demand = brick category sales × addressable retail share. Doctor weights reflect category relevance, practice capacity and public/activity signals. Synthetic training-audit records adjust specialty-level weight multipliers; held-out audit records are excluded. This lightweight example does not model actual prescription behavior.</p></div>
+        <div class="card"><div class="section-title"><div><h2>Brick totals reconcile</h2><p>Every brick’s estimates sum to its net addressable total in each resample.</p></div></div><div id="reconcile"></div><div class="callout" style="margin-top:13px">The 10th and 90th percentiles across 1,000 seeded perturbations form the displayed 80% interval. Wider intervals reflect greater input uncertainty. This is a prototype resampling procedure; calibration must be measured on a separate audit sample before operational use.</div></div>
+      </div>
+      <div class="card" style="margin-top:16px"><div class="section-title"><div><h2>Full-universe estimate list</h2><p>Fictional HCPs · currency value per month · synthetic audit training and hold-out flags shown separately</p></div><span class="pill" id="estimate-count"></span></div>
+        <div class="toolbar"><div class="field compact"><label for="brick-filter">BRICK</label><select id="brick-filter"><option value="">All bricks</option></select></div><div class="field compact"><label for="conf-filter">CONFIDENCE</label><select id="conf-filter"><option value="">All</option><option>High</option><option>Medium</option><option>Low</option></select></div><div class="field compact"><label for="doctor-search">SEARCH</label><input id="doctor-search" placeholder="Doctor or specialty"></div></div>
+        <div class="tablewrap"><table><thead><tr><th>Doctor</th><th>Specialty</th><th>Brick</th><th class="num">Est. value / mo</th><th class="num">80% interval</th><th>Confidence</th><th>Audit sample</th><th>Priority score</th></tr></thead><tbody id="estimate-rows"></tbody></table></div>
+      </div>
+    </section>
+    <section class="page" id="page-validation">
+      <div class="heading"><div><div class="eyebrow">Evidence · held-out audit</div><h1>Test the estimates before using them.</h1><p>Doctors marked “Hold-out” are excluded from estimation and compared against their synthetic audit truth only after the estimate and interval have been calculated. Metrics are recalculated when weights or random seed change.</p></div><div class="actions"><button class="btn primary" id="validate">Recalculate validation</button></div></div>
+      <div class="notice"><strong>Important:</strong> these numbers validate only the seeded synthetic example. They are not client results, and this demo does not establish that the approach works on any real market.</div>
+      <div class="grid cards" id="validation-kpis"></div>
+      <div class="grid two">
+        <div class="card"><div class="section-title"><div><h2>Predicted vs held-out audit</h2><p>Each point is a fictional hold-out doctor; x and y axes use monthly value.</p></div></div><div id="validation-chart"></div><div class="legend"><span><i class="dot"></i>Held-out HCP</span><span><i class="dot gray"></i>Perfect estimate line</span></div></div>
+        <div class="card"><h2>How to read this back-test</h2><div class="step"><b>1</b><div><strong>Seal a subset</strong><div class="smalltext">Hold-out audit truth is not used in that doctor’s estimate.</div></div></div><div class="step"><b>2</b><div><strong>Compare point estimates</strong><div class="smalltext">Rank correlation tests ordering; top-decile capture measures how many actual top-potential doctors were found.</div></div></div><div class="step"><b>3</b><div><strong>Check interval coverage</strong><div class="smalltext">Coverage is the share of held-out truths inside the nominal 80% interval. Small samples make this noisy.</div></div></div><div class="callout warn" id="coverage-note"></div><div class="smalltext" style="margin-top:10px">A useful pilot needs a sample size and acceptance thresholds agreed in advance, plus a method appropriate to the data. A result from this synthetic roster must not be presented as efficacy proof.</div></div>
+      </div>
+      <div class="card" style="margin-top:16px"><div class="section-title"><div><h2>Held-out doctors</h2><p>Truth and estimate are shown only to demonstrate the evaluation workflow.</p></div></div><div class="tablewrap"><table><thead><tr><th>Doctor</th><th>Brick</th><th class="num">Audit truth</th><th class="num">Estimate</th><th class="num">80% interval</th><th>In interval?</th></tr></thead><tbody id="validation-rows"></tbody></table></div></div>
+    </section>
+    <section class="page" id="page-priorities">
+      <div class="heading"><div><div class="eyebrow">Action · frequency caps</div><h1>Prioritize without overcalling.</h1><p>Translate relative scores into a suggested quarterly call plan. Caps limit frequency; low-ranked doctors remain visible and are never silently removed.</p></div><div class="actions"><button class="btn primary" id="export-plan">Export tour-plan CSV</button></div></div>
+      <div class="grid two">
+        <div class="card"><div class="section-title"><div><h2>Scenario controls</h2><p>Adjust allocation of a fixed quarterly call budget.</p></div><span class="pill">Illustrative scenario</span></div>
+          <div class="control-row"><div><strong>Calls available / quarter</strong><div class="smalltext">This scenario distributes the total across all 72 HCPs.</div></div><div class="field"><input id="call-budget" type="number" min="72" max="1200" step="12" value="462" aria-label="Calls available per quarter"></div></div>
+          <div class="control-row"><div><strong>Maximum frequency</strong><div class="smalltext">Maximum per doctor per quarter.</div></div><div class="field"><select id="freq-cap" aria-label="Maximum calls per doctor"><option value="12">12 calls (weekly)</option><option value="6">6 calls (fortnightly)</option><option value="3">3 calls (monthly)</option><option value="2">2 calls</option><option value="1">1 call</option></select></div></div>
+          <div class="control-row"><div><strong>Preserve existing high-frequency calls</strong><div class="smalltext">Reserve one extra call for each doctor currently seen at least 3 times per quarter.</div></div><input id="respect-current" type="checkbox" checked></div>
+          <div class="callout" style="margin-top:14px">Allocation rule: one baseline call per doctor, then distribute remaining calls by priority score, subject to the selected cap. No HCP is removed. If total budget is below the minimum or the requested cap makes the budget infeasible, the app reports the constraint.</div>
+        </div>
+        <div class="card"><h2>Before and after</h2><p class="smalltext">Calls / quarter by estimated priority band</p><div id="call-chart"></div><div class="waterfall" id="call-kpis"></div><div id="call-message"></div></div>
+      </div>
+      <div class="grid equal" style="margin-top:16px"><div class="card"><div class="section-title"><div><h2>Suggested call plan</h2><p>Frequency cap applied; overrides require a reason in a live workflow.</p></div><span class="pill" id="plan-count"></span></div><div class="tablewrap"><table><thead><tr><th>Rank</th><th>Doctor</th><th>Brick</th><th>Priority</th><th>Confidence</th><th>Current / qtr</th><th>Suggested / qtr</th></tr></thead><tbody id="plan-rows"></tbody></table></div></div>
+        <div class="card"><h2>Scenario comparison</h2><p class="smalltext">Two snapshots compare a capped baseline and your current scenario. Reset clears saved scenario state.</p><div class="toolbar"><button class="btn small" id="save-scenario">Save current as comparison</button></div><div id="scenario-results" class="callout">Save a scenario to compare call distribution.</div></div></div>
+    </section>
+    <section class="page" id="page-governance">
+      <div class="heading"><div><div class="eyebrow">Controls · claims register</div><h1>Keep evidence, assumptions and decisions traceable.</h1><p>A lightweight governance panel for a demo. It records browser-local events and flags unsupported claims; it is not an audit-certified system or a substitute for privacy, legal or security review.</p></div><div class="actions"><button class="btn" id="export-audit">Export event log</button><button class="btn primary" id="export-claims">Export claims register</button></div></div>
+      <div class="grid cards" id="governance-kpis"></div>
+      <div class="grid two"><div class="card"><div class="section-title"><div><h2>Claim register</h2><p>Evidence status must travel with any external statement.</p></div></div><div class="tablewrap"><table><thead><tr><th>Claim</th><th>Evidence needed</th><th>Status</th><th>Include in demo?</th></tr></thead><tbody id="claim-rows"></tbody></table></div></div>
+        <div class="card"><div class="section-title"><div><h2>Data and use guardrails</h2><p>Prototype defaults; production requirements remain open.</p></div></div><div class="checkitem"><b>No patient data</b><span>Prototype contains only fictional HCP-like records and commercial-style synthetic fields.</span></div><div class="checkitem"><b>Purpose limitation</b><span>Any deployment requires a documented lawful purpose, controller/processor roles, minimization, retention, access control and approved DPA.</span></div><div class="checkitem"><b>Local-only state</b><span>Scenario settings and audit events stay in this browser’s local storage; use Reset demo to clear them.</span></div><div class="checkitem"><b>UCPMP-safe rationale</b><span>Prioritization should reflect professional relevance only; no inducements, referral inference or patient profiling.</span></div><div class="checkitem"><b>Production security</b><span>Hosting, encryption, key management, user access, breach response and deletion certificates are not implemented or certified here.</span></div></div>
+      </div>
+      <div class="card" style="margin-top:16px"><div class="section-title"><div><h2>Local event log</h2><p>Events in this browser session; illustrative and not tamper-proof.</p></div><button class="btn small" id="clear-events">Clear log</button></div><div class="tablewrap"><table><thead><tr><th>Time</th><th>Event</th><th>Details</th></tr></thead><tbody id="audit-rows"></tbody></table></div></div>
+    </section>
+    <p class="foot">Synthetic decision-support prototype · No client data, patient data, real HCP data, or validated production model · Use only for demonstration</p>
+  </main>
+</div>
+<div class="modalback" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name"><div class="modal"><div class="modalhead"><div><div class="eyebrow">Synthetic HCP record</div><h2 id="modal-name">Doctor profile</h2><p class="smalltext" id="modal-sub"></p></div><button class="close" id="modal-close" aria-label="Close doctor profile">Close</button></div><div id="modal-body"></div></div></div>
+<div class="assistant-backdrop" id="assistant-backdrop"></div>
+<aside class="assistant-panel" id="assistant-panel" role="dialog" aria-modal="true" aria-labelledby="assistant-heading" aria-hidden="true">
+  <header class="assistant-head"><div class="assistant-title"><div><div class="assistant-label">✦ Decision support</div><h2 id="assistant-heading">HCP Intelligence Assistant</h2><p>Ask about the synthetic demo’s estimates, scores, validation or call-plan scenarios.</p></div><button class="close" id="assistant-close" aria-label="Close assistant">Close</button></div><div class="assistant-disclaimer">Local prototype assistant · answers are generated in this browser from demo rules and synthetic data. No external AI model or network call is used. Not clinical advice.</div></header>
+  <div class="assistant-messages" id="assistant-messages" aria-live="polite" aria-relevant="additions"></div>
+  <div class="assistant-suggestions" id="assistant-suggestions"><button type="button" data-prompt="Summarize the validation results">Validation summary</button><button type="button" data-prompt="Explain the estimation interval">Explain intervals</button><button type="button" data-prompt="Which bricks should I review?">Brick checks</button><button type="button" data-prompt="Summarize the call plan">Call plan</button></div>
+  <form class="assistant-form" id="assistant-form"><div class="assistant-compose"><textarea id="assistant-input" rows="2" maxlength="500" placeholder="Ask a question about this demo…" aria-label="Ask the HCP Intelligence Assistant"></textarea><button class="btn primary" type="submit">Ask</button></div><div class="smalltext">Avoid entering personal, patient, customer or confidential information. Questions are not sent to a server.</div></form>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+  "use strict";
+  const STORE="hcpDecisionLab.v1";
+  const specialties=["Consulting physician","Diabetologist","General practitioner","Endocrinologist","Cardiologist"];
+  const names=["Aarav Mehta","Ananya Rao","Kavya Iyer","Rohan Shah","Isha Nair","Dev Malhotra","Mira Das","Arjun Menon","Nisha Kapoor","Kabir Pillai","Tara Bose","Neel Reddy","Aditi Sen","Vikram Joshi","Leela Krishnan","Samar Kulkarni","Pia Bhat","Kiran Sinha","Rhea Patil","Adil Varma","Sana Ghosh","Ishan Dutta","Maya Naidu","Ravi Chawla"];
+  const bricks=[{id:"B1",name:"Civil Lines",sales:1840000,retail:.77},{id:"B2",name:"Market Yard",sales:1510000,retail:.71},{id:"B3",name:"Station Road",sales:2190000,retail:.82}];
+  let state={weights:{relevance:35,capacity:25,access:15,public:15,headroom:10},seed:7124,filters:{brick:"",conf:"",q:""},scenario:null,events:[],claims:{}};
+  const rand=(()=>{let s=state.seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}})();
+  const randn=()=>{const u=Math.max(rand(),1e-8),v=rand();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+  const docs=[];
+  for(let i=0;i<72;i++){
+    const b=bricks[Math.floor(i/24)],n=names[(i*7+Math.floor(i/24)*3)%names.length],surname=names[(i*11+5)%names.length].split(" ").at(-1);
+    const specialty=specialties[(i*3+Math.floor(i/8))%specialties.length],relevance=0.48+rand()*.5,capacity=0.35+rand()*.65,access=0.38+rand()*.6,publicSignal=.25+rand()*.72,headroom=.2+rand()*.78,noise=randn();
+    const confidence=["High","Medium","Low"][i%3===0?0:i%3===1?1:2];
+    const auditType=i%12===0?"Training":i%12===1?"Hold-out":"—";
+    const truthSeed=(relevance*.35+capacity*.27+access*.12+publicSignal*.13+headroom*.13)*(0.85+noise*.095);
+    docs.push({id:`SYN-${String(i+1).padStart(3,"0")}`,name:`Dr. ${n.split(" ")[0]} ${surname}`,specialty,brick:b.id,features:{relevance,capacity,access,publicSignal,headroom},confidence,auditType,truthFactor:truthSeed,current: [0,1,1,2,3,1,0,2,3,1,2,0][i%12]});
+  }
+  const byBrick=Object.fromEntries(bricks.map(b=>[b.id,docs.filter(d=>d.brick===b.id)]));
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  const fmt=n=>new Intl.NumberFormat("en-IN",{maximumFractionDigits:0}).format(Math.round(n));
+  const money=n=>"₹"+fmt(n);
+  const pct=n=>`${Math.round(n*100)}%`;
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let activeDoctorId=null;
+  const weightKeys=["relevance","capacity","access","public","headroom"];
+  const weightLabels={relevance:"Category relevance",capacity:"Practice capacity",access:"Access feasibility",public:"Public professional signal",headroom:"Brand headroom"};
+  const log=(event,detail)=>{state.events.unshift({time:new Date().toISOString(),event,detail});state.events=state.events.slice(0,150);persist();renderGovernance()};
+  const persist=()=>{try{localStorage.setItem(STORE,JSON.stringify({scenario:state.scenario,events:state.events,claims:state.claims}))}catch(e){console.warn("Could not save local demo state",e)}};
+  try{const saved=JSON.parse(localStorage.getItem(STORE)||"{}");state.scenario=saved.scenario||null;state.events=Array.isArray(saved.events)?saved.events:[];state.claims=saved.claims||{}}catch(e){console.warn("Saved demo state could not be read",e)}
+  function baseWeight(d){const w=state.weights,f=d.features;return (w.relevance*f.relevance+w.capacity*f.capacity+w.access*f.access+w.public*f.publicSignal+w.headroom*f.headroom)/100}
+  const calibrationFactors=()=>{
+    const groups={};
+    for(const d of docs.filter(x=>x.auditType==="Training")){
+      const roster=byBrick[d.brick],net=d.truthFactor/roster.reduce((a,x)=>a+x.truthFactor,0),model=baseWeight(d)/roster.reduce((a,x)=>a+baseWeight(x),0);
+      (groups[d.specialty]??=[]).push(net/Math.max(model,.0001));
+    }
+    const all=Object.values(groups).flat(),global=all.reduce((a,x)=>a+x,0)/Math.max(all.length,1);
+    return Object.fromEntries(specialties.map(spec=>{const values=groups[spec]||[];const local=values.reduce((a,x)=>a+x,0)/Math.max(values.length,1);return[spec,clamp(values.length?(local*.7+global*.3):global,.7,1.3)]}));
+  };
+  function compute(){
+    const estimates={};
+    const correction=calibrationFactors();
+    for(const b of bricks){
+      const roster=byBrick[b.id],net=b.sales*b.retail;
+      const raw=roster.map(d=>baseWeight(d)*correction[d.specialty]);
+      const sum=raw.reduce((a,x)=>a+x,0);
+      const draws=roster.map(()=>[]);
+      let s=(state.seed+Number(b.id.slice(1))*99991)>>>0;
+      const random=()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296};
+      const normal=()=>{const u=Math.max(random(),1e-8),v=random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+      for(let k=0;k<1000;k++){
+        const varied=roster.map((d,i)=>raw[i]*Math.exp(normal()*(d.confidence==="High"?.055:d.confidence==="Medium"?.12:.22)));
+        const den=varied.reduce((a,x)=>a+x,0);
+        varied.forEach((v,i)=>draws[i].push(net*v/den));
+      }
+      roster.forEach((d,i)=>{
+        const vals=draws[i].sort((a,b)=>a-b),point=net*raw[i]/sum;
+        const lo=vals[99],hi=vals[899];
+        const score=100*(d.features.relevance*.35+d.features.capacity*.25+d.features.access*.15+d.features.publicSignal*.15+d.features.headroom*.1);
+        const truth=net*d.truthFactor/roster.reduce((a,x)=>a+x.truthFactor,0);
+        estimates[d.id]={point,lo,hi,score,truth,brickNet:net};
+      });
+    }
+    return estimates;
+  }
+  let E=compute();
+  const confidenceClass=c=>c.toLowerCase();
+  const badge=c=>`<span class="pill ${confidenceClass(c)}">${esc(c)}</span>`;
+  const navigate=id=>{document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===`page-${id}`));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"});};
+  document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.page)));
+  document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.goto)));
+  function renderOverview(){
+    const nAudit=docs.filter(d=>d.auditType!=="—").length,hold=docs.filter(d=>d.auditType==="Hold-out").length;
+    document.getElementById("overview-kpis").innerHTML=[
+      ["Synthetic HCP universe",docs.length,"3 illustrative territories"],
+      ["Addressable category / mo",money(bricks.reduce((a,b)=>a+b.sales*b.retail,0)),"Netted from synthetic brick sales"],
+      ["Audit sample",nAudit,`${hold} hold-out · ${nAudit-hold} training`],
+      ["Resamples", "1,000","Per brick · seeded demonstration"]
+    ].map(x=>`<div class="card"><div class="metric-label">${x[0]}</div><div class="metric">${x[1]}</div><div class="metric-note">${x[2]}</div></div>`).join("");
+    document.getElementById("brick-chart").innerHTML=barChart(bricks.map(b=>({label:b.id+" · "+b.name,a:b.sales*b.retail,b:b.sales})));
+    const sorted=[...docs].sort((a,b)=>E[b.id].point-E[a.id].point).slice(0,5);
+    document.getElementById("top-doctors").innerHTML=sorted.map(d=>`<div class="listrow"><div><strong>${esc(d.name)} <span class="sub">${d.id} · ${d.brick}</span></strong><span class="smalltext">${esc(d.specialty)} · ${badge(d.confidence)}</span></div><div style="text-align:right"><strong>${money(E[d.id].point)}</strong><div class="sub">${money(E[d.id].lo)}–${money(E[d.id].hi)}</div></div></div>`).join("");
+    const rank=validationStats();
+    document.getElementById("decision-checks").innerHTML=`<div class="checkitem"><b>${rank.coverage>=.7&&rank.coverage<=.9?"Coverage near target":"Coverage differs from target"}</b><span>${rank.coverageText} held-out values in nominal 80% intervals (synthetic sample n=${rank.rows.length}).</span></div><div class="checkitem"><b>Potential is not responsiveness</b><span>Scores and estimates are not recommendations to prescribe or evidence of behavior change.</span></div><div class="checkitem"><b>Suppress if inputs are weak</b><span>Low confidence should trigger verification, not false precision.</span></div>`;
+  }
+  function barChart(items){
+    const W=700,H=245,L=130,R=24,T=12,B=32,max=Math.max(...items.flatMap(x=>[x.a,x.b]))*1.1,plot=W-L-R;
+    let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Brick net demand compared with sales">`;
+    for(let i=0;i<=4;i++){const x=L+plot*i/4;svg+=`<line class="gridline" x1="${x}" y1="${T}" x2="${x}" y2="${H-B}"/><text x="${x}" y="${H-8}" text-anchor="middle">${money(max*i/4)}</text>`}
+    items.forEach((it,i)=>{const y=T+i*68;svg+=`<text x="${L-8}" y="${y+21}" text-anchor="end">${esc(it.label)}</text><rect class="green" x="${L}" y="${y+5}" width="${plot*it.a/max}" height="15" rx="4"/><rect class="orange" x="${L}" y="${y+27}" width="${plot*it.b/max}" height="15" rx="4"/>`});
+    return svg+"</svg>";
+  }
+  function renderWeightControls(){
+    document.getElementById("weight-controls").innerHTML=weightKeys.map(k=>`<div class="control-row"><div><strong>${weightLabels[k]}</strong></div><div style="display:flex;gap:9px;align-items:center"><input type="range" min="0" max="60" step="1" value="${state.weights[k]}" data-weight="${k}" aria-label="${weightLabels[k]} weight"><span class="value" id="weight-${k}">${state.weights[k]}</span></div></div>`).join("")+`<div class="control-row"><strong>Total weight</strong><span class="value" id="weight-total"></span></div>`;
+    document.querySelectorAll("[data-weight]").forEach(input=>input.addEventListener("input",()=>{
+      const k=input.dataset.weight;state.weights[k]=Number(input.value);normalizeWeights(k);
+      renderWeightControls();E=compute();renderEstimates();renderOverview();renderValidation();renderPriorities();
+    }));
+    document.getElementById("formula").textContent="Doctor weight = Σ(parameter value × normalized parameter weight) × training-audit specialty adjustment. Estimated share = net brick demand × doctor weight / Σ weights in brick.";
+    normalizeWeights();
+  }
+  function normalizeWeights(changed){
+    let total=weightKeys.reduce((a,k)=>a+state.weights[k],0);
+    if(changed&&total!==100){const others=weightKeys.filter(k=>k!==changed),remain=100-state.weights[changed],ot=others.reduce((a,k)=>a+state.weights[k],0);if(ot===0){state.weights[others[0]]=remain}else{others.forEach(k=>state.weights[k]=Math.round(state.weights[k]/ot*remain))}}
+    total=weightKeys.reduce((a,k)=>a+state.weights[k],0);
+    const diff=100-total;if(diff)state.weights[changed||"relevance"]+=diff;
+    weightKeys.forEach(k=>{const el=document.getElementById(`weight-${k}`);if(el)el.textContent=state.weights[k]});
+    const totalEl=document.getElementById("weight-total");if(totalEl)totalEl.textContent=weightKeys.reduce((a,k)=>a+state.weights[k],0)+" / 100";
+  }
+  function renderReconcile(){
+    document.getElementById("reconcile").innerHTML=bricks.map(b=>{const net=b.sales*b.retail,all=byBrick[b.id].reduce((a,d)=>a+E[d.id].point,0);return `<div class="listrow"><div><strong>${b.id} · ${b.name}</strong><span class="smalltext">Gross brick category ${money(b.sales)} · addressable ${pct(b.retail)}</span></div><div style="text-align:right"><strong>${money(all)}</strong><div class="sub">${money(net)} target · difference ${money(Math.abs(net-all))}</div></div></div>`}).join("");
+  }
+  function renderEstimates(){
+    const bf=document.getElementById("brick-filter"),cf=document.getElementById("conf-filter"),q=document.getElementById("doctor-search");
+    const list=[...docs].filter(d=>(!state.filters.brick||d.brick===state.filters.brick)&&(!state.filters.conf||d.confidence===state.filters.conf)&&(!state.filters.q||`${d.name} ${d.specialty} ${d.id}`.toLowerCase().includes(state.filters.q.toLowerCase()))).sort((a,b)=>E[b.id].point-E[a.id].point);
+    document.getElementById("estimate-count").textContent=`${list.length} doctors`;
+    document.getElementById("estimate-rows").innerHTML=list.map(d=>`<tr class="tablerow" data-profile="${d.id}"><td><span class="doctor">${esc(d.name)}</span><div class="sub">${d.id}</div></td><td>${esc(d.specialty)}</td><td>${d.brick}</td><td class="num">${money(E[d.id].point)}</td><td class="num">${money(E[d.id].lo)} – ${money(E[d.id].hi)}</td><td>${badge(d.confidence)}</td><td>${d.auditType==="—"?'<span class="pill">Not audited</span>':`<span class="pill audit">${d.auditType}</span>`}</td><td>${E[d.id].score.toFixed(1)}</td></tr>`).join("")||`<tr><td colspan="8" class="empty">No doctors match these filters.</td></tr>`;
+    if(!bf.dataset.ready){bf.innerHTML='<option value="">All bricks</option>'+bricks.map(b=>`<option value="${b.id}">${b.id} · ${b.name}</option>`).join("");bf.dataset.ready="1"}
+    bf.value=state.filters.brick;cf.value=state.filters.conf;q.value=state.filters.q;
+    renderReconcile();
+    document.querySelectorAll("[data-profile]").forEach(r=>r.addEventListener("click",()=>openProfile(r.dataset.profile)));
+  }
+  function validationStats(){
+    const rows=docs.filter(d=>d.auditType==="Hold-out").map(d=>({d,e:E[d.id],truth:E[d.id].truth}));
+    const cover=rows.filter(x=>x.truth>=x.e.lo&&x.truth<=x.e.hi).length/Math.max(1,rows.length);
+    const rankA=rows.map(x=>x.truth),rankB=rows.map(x=>x.e.point);
+    const ranks=arr=>arr.map(v=>1+arr.filter(x=>x<v).length+arr.filter(x=>x===v).length/2);
+    const pear=(a,b)=>{const ma=a.reduce((s,x)=>s+x,0)/a.length,mb=b.reduce((s,x)=>s+x,0)/b.length;let n=0,x=0,y=0;for(let i=0;i<a.length;i++){n+=(a[i]-ma)*(b[i]-mb);x+=(a[i]-ma)**2;y+=(b[i]-mb)**2}return n/Math.sqrt(x*y||1)};
+    const actualRanks=ranks(rankA),predRanks=ranks(rankB),corr=pear(actualRanks,predRanks);
+    const topCount=Math.max(1,Math.ceil(rows.length*.1)),actTop=rows.slice().sort((a,b)=>b.truth-a.truth).slice(0,topCount),predIds=new Set(rows.slice().sort((a,b)=>b.e.point-a.e.point).slice(0,topCount).map(x=>x.d.id)),capture=actTop.filter(x=>predIds.has(x.d.id)).length/topCount;
+    return {rows,coverage:cover,coverageText:`${Math.round(cover*100)}%`,corr,capture,topCount};
+  }
+  function renderValidation(){
+    const s=validationStats();
+    const stats=[["80% interval coverage",s.coverageText,`${s.rows.filter(x=>x.truth>=x.e.lo&&x.truth<=x.e.hi).length} / ${s.rows.length} held-out truths`],["Rank correlation",s.corr.toFixed(2),"Spearman · held-out subset"],["Top-decile capture",pct(s.capture),`${Math.round(s.capture*s.topCount)} / ${s.topCount} actual top doctors captured`],["Hold-out sample",s.rows.length,"synthetic audit records"]];
+    document.getElementById("validation-kpis").innerHTML=stats.map(x=>`<div class="card"><div class="metric-label">${x[0]}</div><div class="metric">${x[1]}</div><div class="metric-note">${x[2]}</div></div>`).join("");
+    document.getElementById("coverage-note").innerHTML=`Observed synthetic coverage is <strong>${s.coverageText}</strong>; nominal target is 80%. With only ${s.rows.length} hold-out records, one record moves coverage by ${pct(1/s.rows.length)}. Do not interpret this as reliable calibration.`;
+    document.getElementById("validation-rows").innerHTML=s.rows.map(x=>`<tr><td>${esc(x.d.name)}<div class="sub">${x.d.id}</div></td><td>${x.d.brick}</td><td class="num">${money(x.truth)}</td><td class="num">${money(x.e.point)}</td><td class="num">${money(x.e.lo)} – ${money(x.e.hi)}</td><td>${x.truth>=x.e.lo&&x.truth<=x.e.hi?'<span class="pill high">Covered</span>':'<span class="pill low">Missed</span>'}</td></tr>`).join("");
+    const W=540,H=300,P=44,vals=s.rows.flatMap(x=>[x.truth,x.e.point]),max=Math.max(...vals)*1.12;
+    let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Predicted versus held-out audit estimates scatter plot">`;
+    for(let i=0;i<=4;i++){const v=max*i/4,x=P+(W-2*P)*i/4,y=H-P-(H-2*P)*i/4;svg+=`<line class="gridline" x1="${x}" y1="${P}" x2="${x}" y2="${H-P}"/><line class="gridline" x1="${P}" y1="${y}" x2="${W-P}" y2="${y}"/><text x="${x}" y="${H-10}" text-anchor="middle">${fmt(v/1000)}k</text><text x="${P-8}" y="${y+3}" text-anchor="end">${fmt(v/1000)}k</text>`}
+    svg+=`<line x1="${P}" y1="${H-P}" x2="${W-P}" y2="${P}" stroke="#91a19a" stroke-dasharray="5 4"/>`;
+    s.rows.forEach(x=>{const cx=P+(W-2*P)*x.truth/max,cy=H-P-(H-2*P)*x.e.point/max;svg+=`<circle cx="${cx}" cy="${cy}" r="5" class="green"><title>${esc(x.d.name)} · truth ${money(x.truth)} · estimate ${money(x.e.point)}</title></circle>`});
+    svg+=`<text x="${W/2}" y="${H-1}" text-anchor="middle">Held-out audit truth</text><text transform="translate(12 ${H/2}) rotate(-90)" text-anchor="middle">Estimated value</text></svg>`;
+    document.getElementById("validation-chart").innerHTML=svg;
+  }
+  function allocateCalls(){
+    const budget=Number(document.getElementById("call-budget").value),cap=Number(document.getElementById("freq-cap").value);
+    if(!Number.isFinite(budget)||budget<docs.length)return {error:`Budget must be at least ${docs.length} calls so each synthetic doctor remains visible with one baseline call.`};
+    const assigned=Object.fromEntries(docs.map(d=>[d.id,1]));
+    let left=budget-docs.length;
+    if(document.getElementById("respect-current").checked){
+      const currentPriority=docs.filter(d=>d.current>=3).sort((a,b)=>E[b.id].score-E[a.id].score);
+      for(const d of currentPriority){if(assigned[d.id]<cap){if(left===0)return{error:"Budget cannot preserve one additional call for each currently high-frequency priority doctor. Increase the budget, raise the cap, or turn off that reservation."};assigned[d.id]++;left--}}
+    }
+    let sorted=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score);
+    while(left>0){let changed=false;for(const d of sorted){if(left<=0)break;if(assigned[d.id]<cap){assigned[d.id]++;left--;changed=true}}if(!changed)return{error:`The ${budget}-call budget exceeds capacity under a cap of ${cap} calls × ${docs.length} doctors (${cap*docs.length}). Raise the cap or reduce budget.`}}
+    return {assigned,budget,cap};
+  }
+  function renderPriorities(){
+    const res=allocateCalls(),cap=Number(document.getElementById("freq-cap").value);
+    if(res.error){document.getElementById("call-message").innerHTML=`<div class="callout error">${esc(res.error)}</div>`;document.getElementById("call-kpis").innerHTML="";document.getElementById("plan-rows").innerHTML="";document.getElementById("plan-count").textContent="Unavailable";document.getElementById("call-chart").innerHTML="";return}
+    const sorted=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score);
+    const bands=sorted.map((d,i)=>({d,band:i<15?"High":i<36?"Medium":"Low",calls:res.assigned[d.id]}));
+    const sum=arr=>arr.reduce((a,x)=>a+x,0),group=["High","Medium","Low"].map(b=>({label:b,a:bands.filter(x=>x.band===b).reduce((s,x)=>s+x.d.current,0),b:bands.filter(x=>x.band===b).reduce((s,x)=>s+x.calls,0)}));
+    document.getElementById("call-chart").innerHTML=smallBars(group);
+    document.getElementById("call-kpis").innerHTML=`<div><strong>${fmt(sum(docs.map(d=>d.current)))}</strong><span>Current calls / qtr</span></div><div><strong>${fmt(res.budget)}</strong><span>Scenario calls / qtr</span></div><div><strong>${fmt(Math.abs(res.budget-sum(docs.map(d=>d.current))))}</strong><span>Budget difference</span></div><div><strong>${cap}</strong><span>Per-doctor cap</span></div>`;
+    document.getElementById("call-message").innerHTML=`<div class="callout">The full ${docs.length}-doctor roster remains present. Suggested total is ${res.budget} calls, cap ${cap}; use as a scenario only, not a field instruction.</div>`;
+    document.getElementById("plan-count").textContent=`${docs.length} doctors`;
+    document.getElementById("plan-rows").innerHTML=bands.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.d.name)}<div class="sub">${x.d.id}</div></td><td>${x.d.brick}</td><td>${E[x.d.id].score.toFixed(1)}</td><td>${badge(x.d.confidence)}</td><td>${x.d.current}</td><td><strong>${x.calls}</strong></td></tr>`).join("");
+    if(state.scenario){
+      const currentGroups=Object.fromEntries(["High","Medium","Low"].map(b=>[b,bands.filter(x=>x.band===b).reduce((a,x)=>a+x.calls,0)]));
+      const savedGroups=state.scenario.groupCalls||{};
+      document.getElementById("scenario-results").innerHTML=`<strong>Saved ${new Date(state.scenario.time).toLocaleString()}</strong><div class="smalltext">Calls / quarter · saved total ${state.scenario.budget}, cap ${state.scenario.cap} · current total ${res.budget}, cap ${cap}</div><div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>Priority band</th><th class="num">Saved</th><th class="num">Current</th><th class="num">Change</th></tr></thead><tbody>${["High","Medium","Low"].map(b=>`<tr><td>${b}</td><td class="num">${savedGroups[b]??"—"}</td><td class="num">${currentGroups[b]}</td><td class="num">${savedGroups[b]===undefined?"—":currentGroups[b]-savedGroups[b]}</td></tr>`).join("")}</tbody></table></div>`;
+    }else document.getElementById("scenario-results").innerHTML="Save a scenario to compare call distribution.";
+  }
+  function smallBars(rows){const max=Math.max(...rows.flatMap(x=>[x.a,x.b]),1);return rows.map(x=>`<div class="kpirow"><span>${x.label} · current ${x.a}</span><div class="barline"><span style="width:${100*x.a/max}%;background:#91a19a"></span></div><div class="barline"><span style="width:${100*x.b/max}%"></span></div><strong>${x.b}</strong></div>`).join("")+`<div class="legend"><span><i class="dot gray"></i>Current</span><span><i class="dot"></i>Scenario</span></div>`}
+  const claims=[
+    {id:"allocation",claim:"Doctor-level demand is allocated across the full synthetic roster",evidence:"Back-test with audit sample; document allocation and netting assumptions",status:"Demonstrated synthetically"},
+    {id:"interval",claim:"Each estimate has a nominal 80% resampling interval",evidence:"Measure hold-out coverage on a sufficiently large, representative audit sample",status:"Prototype only · not calibrated"},
+    {id:"ranking",claim:"Transparent weighted score can rank doctors for review",evidence:"Agree weights with brand team; compare against current segmentation",status:"Demonstrated synthetically"},
+    {id:"uplift",claim:"Prioritized calls increase sales or prescriptions",evidence:"Pre-registered controlled pilot with agreed primary outcome",status:"Not established"},
+    {id:"compliance",claim:"System is compliant and production-secure",evidence:"Privacy/legal review, DPA, security controls, hosting and certification evidence",status:"Not established"},
+    {id:"integration",claim:"Works with any CRM / writes next-best-action",evidence:"Test supported interfaces, permissions, exports and operational workflow",status:"Not implemented"}
+  ];
+  function renderGovernance(){
+    document.getElementById("governance-kpis").innerHTML=[["Registered claims",claims.length,"Evidence status visible"],["Client evidence",0,"No live client data in demo"],["Local events",state.events.length,"Browser storage only"],["Production certification","None","Not assessed"]].map(x=>`<div class="card"><div class="metric-label">${x[0]}</div><div class="metric">${x[1]}</div><div class="metric-note">${x[2]}</div></div>`).join("");
+    document.getElementById("claim-rows").innerHTML=claims.map(c=>`<tr><td><strong>${esc(c.claim)}</strong></td><td>${esc(c.evidence)}</td><td>${esc(c.status)}</td><td><input type="checkbox" data-claim="${c.id}" ${state.claims[c.id]?"checked":""} aria-label="Include claim ${esc(c.claim)}"></td></tr>`).join("");
+    document.getElementById("audit-rows").innerHTML=state.events.slice(0,50).map(e=>`<tr><td>${new Date(e.time).toLocaleString()}</td><td>${esc(e.event)}</td><td>${esc(e.detail)}</td></tr>`).join("")||`<tr><td class="empty" colspan="3">No events recorded in this browser.</td></tr>`;
+    document.querySelectorAll("[data-claim]").forEach(ch=>ch.addEventListener("change",()=>{state.claims[ch.dataset.claim]=ch.checked;persist();log("Claim register updated",`${ch.dataset.claim}: ${ch.checked?"included":"excluded"} in demo view`)}));
+  }
+  function openProfile(id){
+    const d=docs.find(x=>x.id===id),e=E[id];if(!d)return;
+    activeDoctorId=id;
+    document.getElementById("modal-name").textContent=d.name;document.getElementById("modal-sub").textContent=`${d.id} · ${d.specialty} · ${d.brick} · Fictional synthetic record`;
+    document.getElementById("modal-body").innerHTML=`<div class="waterfall"><div><strong>${money(e.point)}</strong><span>Estimated addressable category value / month</span></div><div><strong>${money(e.lo)}–${money(e.hi)}</strong><span>Nominal 80% interval</span></div><div><strong>${e.score.toFixed(1)} / 100</strong><span>Relative priority score</span></div><div><strong>${d.auditType}</strong><span>Audit sample role</span></div></div><div class="grid equal"><div class="card"><h3>Score inputs</h3>${weightKeys.map(k=>`<div class="listrow"><span>${weightLabels[k]}</span><strong>${(100*d.features[({public:"publicSignal"})[k]||k]).toFixed(0)} / 100 · ${state.weights[k]} wt</strong></div>`).join("")}</div><div class="card"><h3>How to interpret</h3><p class="smalltext">This is an allocation of synthetic brick-level category demand, not observed doctor-level sales, prescription data or individual treatment advice.</p><p class="smalltext">Confidence label: ${d.confidence}. Interval width arises from seeded input perturbation and is not empirically calibrated.</p><div class="callout warn">Potential is not responsiveness. A high estimated potential does not mean this doctor is persuadable, unserved, or appropriate for a specific call.</div></div></div><button class="btn small" id="ask-about-doctor">Ask assistant about this synthetic record</button>`;
+    document.getElementById("ask-about-doctor").addEventListener("click",()=>openAssistant(`Explain ${d.id}`));
+    document.getElementById("profile-modal").classList.add("open");log("Doctor profile opened",`${d.id} profile viewed`);
+  }
+  document.getElementById("modal-close").addEventListener("click",()=>document.getElementById("profile-modal").classList.remove("open"));
+  document.getElementById("profile-modal").addEventListener("click",e=>{if(e.target.id==="profile-modal")e.target.classList.remove("open")});
+  function download(filename,content,type="text/csv;charset=utf-8"){
+    const blob=new Blob([content],{type}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast(`Downloaded ${filename}`);
+  }
+  function csv(rows){return rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\r\n")}
+  function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
+  const assistantMessages=document.getElementById("assistant-messages");
+  function addAssistantMessage(text,kind="assistant"){
+    const bubble=document.createElement("div");bubble.className=`assistant-message ${kind}`;bubble.textContent=text;
+    if(kind==="assistant"){const note=document.createElement("small");note.textContent="Local demo response · synthetic data";bubble.appendChild(note)}
+    assistantMessages.appendChild(bubble);assistantMessages.scrollTop=assistantMessages.scrollHeight;
+  }
+  function openAssistant(question=""){
+    const panel=document.getElementById("assistant-panel");
+    panel.classList.add("open");panel.setAttribute("aria-hidden","false");document.getElementById("assistant-backdrop").classList.add("open");
+    document.getElementById("assistant-input").focus();
+    if(assistantMessages.childElementCount===0)addAssistantMessage("Hi. I can explain a synthetic doctor estimate, show how the interval works, summarize the held-out back-test, or review the call-plan scenario. I cannot provide clinical advice or evidence of real-world impact.");
+    if(question){document.getElementById("profile-modal").classList.remove("open");document.getElementById("assistant-input").value=question;submitAssistantQuestion()}
+  }
+  function closeAssistant(){
+    const panel=document.getElementById("assistant-panel");
+    panel.classList.remove("open");panel.setAttribute("aria-hidden","true");document.getElementById("assistant-backdrop").classList.remove("open");
+    document.getElementById("assistant-open").focus();
+  }
+  function assistantAnswer(question){
+    const q=question.toLowerCase();
+    if(/\b(diagnos|treat|treatment|medicine|medication|prescri(be|ption)|patient|dose|therapy recommendation)\b/.test(q))return "I can’t give clinical, diagnosis, treatment, or prescribing advice. This demo contains no patient data and is only for exploring synthetic commercial estimates. Please consult qualified clinical professionals for medical decisions.";
+    const docMatch=docs.find(d=>q.includes(d.id.toLowerCase())||q.includes(d.name.toLowerCase()))||(activeDoctorId&&(/\b(this doctor|selected doctor|this record)\b/.test(q))?docs.find(d=>d.id===activeDoctorId):null);
+    if(docMatch){
+      const d=docMatch,e=E[d.id],contributions=weightKeys.map(k=>({name:weightLabels[k],points:100*d.features[k==="public"?"publicSignal":k]*state.weights[k]/100})).sort((a,b)=>b.points-a.points).slice(0,3);
+      return `${d.name} (${d.id}) is a fictional synthetic record.\n\nEstimated addressable category value: ${money(e.point)} per month; nominal 80% resampling interval ${money(e.lo)}–${money(e.hi)}. Relative priority score: ${e.score.toFixed(1)}/100. Confidence flag: ${d.confidence}. Audit role: ${d.auditType}.\n\nLargest weighted score contributions: ${contributions.map(x=>`${x.name} (${x.points.toFixed(1)} points)`).join(", ")}.\n\nThe estimate allocates net brick demand across the roster; it is not observed doctor-level sales or an estimate of responsiveness. The interval has not been calibrated on real data.`;
+    }
+    if(/\b(interval\w*|uncertaint\w*|resampl\w*|coverage|confidence)\b/.test(q)){
+      const s=validationStats();
+      return `The demo perturbs each doctor's synthetic allocation weight 1,000 times within its brick, normalizes each draw so the brick total stays fixed, then reports the 10th and 90th percentiles as a nominal 80% interval.\n\nWider perturbations are used for lower-confidence records. This is a seeded parametric demonstration, not a fitted model or a guarantee of 80% coverage. In the current held-out synthetic sample, ${s.coverageText} (${s.rows.filter(x=>x.truth>=x.e.lo&&x.truth<=x.e.hi).length}/${s.rows.length}) lie inside the interval. That small synthetic sample cannot establish calibration.`;
+    }
+    if(/\b(validat\w*|back.?test|hold.?out|audit sample|rank correlation|top.?decile)\b/.test(q)){
+      const s=validationStats();
+      return `Synthetic hold-out back-test (${s.rows.length} records):\n• 80% interval coverage: ${s.coverageText} (${s.rows.filter(x=>x.truth>=x.e.lo&&x.truth<=x.e.hi).length}/${s.rows.length}).\n• Spearman rank correlation: ${s.corr.toFixed(2)}.\n• Top-decile capture: ${pct(s.capture)} (${Math.round(s.capture*s.topCount)}/${s.topCount}).\n\nThese statistics describe only the generated demo data. The very small sample makes them unstable; they are not client evidence or proof of effect. Agree a representative hold-out sample and acceptance thresholds before a real test.`;
+    }
+    if(/\b(call plan|calls?|frequency|cap|tour plan|scenario|redirect)\b/.test(q)){
+      const plan=allocateCalls();if(plan.error)return `The current call-plan settings are infeasible: ${plan.error}`;
+      const ranked=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score),groups={High:0,Medium:0,Low:0};
+      ranked.forEach((d,i)=>groups[i<15?"High":i<36?"Medium":"Low"]+=plan.assigned[d.id]);
+      return `Current synthetic scenario: ${plan.budget} total calls per quarter; maximum ${plan.cap} per doctor. The suggested distribution is High ${groups.High}, Medium ${groups.Medium}, Low ${groups.Low}. All ${docs.length} doctors remain on the roster with at least one baseline call.\n\nThis is a configurable planning illustration, not a field instruction. Confirm feasibility, appropriateness, local policy and rep feedback before any real-world use.`;
+    }
+    if(/\b(brick|reconcil|sales|addressable|net demand|market)\b/.test(q)){
+      const rows=bricks.map(b=>{const net=b.sales*b.retail,total=byBrick[b.id].reduce((sum,d)=>sum+E[d.id].point,0);return `${b.id} · ${b.name}: observed synthetic category sales ${money(b.sales)}; addressable share ${pct(b.retail)}; allocated estimates total ${money(total)} against net target ${money(net)}.`});
+      return `Each synthetic brick's category sales are multiplied by an illustrative addressable-retail share. Doctor weights are normalized within that brick, so allocations reconcile to its net target.\n\n${rows.join("\n")}\n\nThese totals and shares are invented for the prototype. Brick sales are aggregate context, not observed doctor-level sales.`;
+    }
+    if(/\b(claim\w*|roi|return\w*|uplift\w*|impact|proof|compliant|compliance|security|production|crm|integrat\w*)\b/.test(q)){
+      return "The claim register distinguishes prototype behavior from evidence not established. The demo has no client validation, causal uplift or ROI evidence, production security certification, privacy/legal approval, or CRM integration. Those claims require separate real-world evidence and implementation. Do not represent the synthetic results as client outcomes.";
+    }
+    if(/\b(score\w*|weight\w*|rank\w*|priority|priorit\w*|why)\b/.test(q)){
+      const weights=weightKeys.map(k=>`${weightLabels[k]} ${state.weights[k]}%`).join(", ");
+      const top=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score).slice(0,3).map((d,i)=>`${i+1}. ${d.name} (${d.brick}), score ${E[d.id].score.toFixed(1)}`).join("\n");
+      return `The priority score is a transparent weighted sum using the current settings: ${weights}. Inputs are normalized synthetic values; audit training data applies a bounded specialty adjustment to allocation weights. Priority score is not the same as potential estimate, a prescription forecast, or a recommendation about an individual doctor.\n\nTop synthetic scores right now:\n${top}\n\nOpen a doctor profile for its inputs and estimated-value interval.`;
+    }
+    return "I can help with questions about:\n• A synthetic doctor record (ask “Explain SYN-001” or use Ask assistant in a profile).\n• Score weights, rankings or brick estimates.\n• The resampling interval and confidence limitations.\n• Held-out validation metrics.\n• Call-plan caps and scenario totals.\n• Which claims are or are not established.\n\nI can’t answer clinical questions. This local prototype uses deterministic rules, not an external generative AI model.";
+  }
+  function submitAssistantQuestion(){
+    const input=document.getElementById("assistant-input"),question=input.value.trim();
+    if(!question)return;
+    input.value="";addAssistantMessage(question,"user");
+    const reply=assistantAnswer(question);addAssistantMessage(reply);
+    log("Local assistant used","Answered a demo-data question; prompt text was not logged.");
+  }
+  document.getElementById("assistant-open").addEventListener("click",()=>openAssistant());
+  document.getElementById("assistant-close").addEventListener("click",closeAssistant);
+  document.getElementById("assistant-backdrop").addEventListener("click",closeAssistant);
+  document.getElementById("assistant-form").addEventListener("submit",event=>{event.preventDefault();submitAssistantQuestion()});
+  document.getElementById("assistant-input").addEventListener("keydown",event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();submitAssistantQuestion()}});
+  document.getElementById("assistant-suggestions").addEventListener("click",event=>{const button=event.target.closest("[data-prompt]");if(button){document.getElementById("assistant-input").value=button.dataset.prompt;submitAssistantQuestion()}});
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&document.getElementById("assistant-panel").classList.contains("open"))closeAssistant()});
+  document.getElementById("brick-filter").addEventListener("change",e=>{state.filters.brick=e.target.value;renderEstimates()});
+  document.getElementById("conf-filter").addEventListener("change",e=>{state.filters.conf=e.target.value;renderEstimates()});
+  document.getElementById("doctor-search").addEventListener("input",e=>{state.filters.q=e.target.value;renderEstimates()});
+  document.getElementById("rerun").addEventListener("click",()=>{state.seed=(state.seed+7919)>>>0;E=compute();renderAll();log("Resampling rerun","1,000 seeded perturbations per brick; demo seed "+state.seed)});
+  document.getElementById("validate").addEventListener("click",()=>{renderValidation();log("Hold-out back-test run",`${validationStats().rows.length} synthetic records; nominal interval 80%`)});
+  document.getElementById("export-estimates").addEventListener("click",()=>{const rows=[["Synthetic ID","Name","Specialty","Brick","Estimated monthly value INR","Interval lower INR","Interval upper INR","Priority score","Confidence","Audit role"],...docs.map(d=>[d.id,d.name,d.specialty,d.brick,Math.round(E[d.id].point),Math.round(E[d.id].lo),Math.round(E[d.id].hi),E[d.id].score.toFixed(1),d.confidence,d.auditType])];download("synthetic-hcp-estimates.csv",csv(rows));log("Estimate CSV exported",`${docs.length} synthetic records`)});
+  document.getElementById("export-plan").addEventListener("click",()=>{const res=allocateCalls();if(res.error){toast(res.error);return}const ranked=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score);download("synthetic-tour-plan.csv",csv([["Rank","Synthetic ID","Name","Brick","Priority score","Confidence","Current calls per quarter","Suggested calls per quarter"],...ranked.map((d,i)=>[i+1,d.id,d.name,d.brick,E[d.id].score.toFixed(1),d.confidence,d.current,res.assigned[d.id]])]));log("Tour-plan CSV exported",`${res.budget} total calls; cap ${res.cap}`)});
+  document.getElementById("save-scenario").addEventListener("click",()=>{const r=allocateCalls();if(r.error){toast(r.error);return}const ranked=[...docs].sort((a,b)=>E[b.id].score-E[a.id].score);const groupCalls={High:0,Medium:0,Low:0};ranked.forEach((d,i)=>groupCalls[i<15?"High":i<36?"Medium":"Low"]+=r.assigned[d.id]);state.scenario={time:new Date().toISOString(),budget:r.budget,cap:r.cap,groupCalls};persist();renderPriorities();log("Scenario saved","Budget "+r.budget+", cap "+r.cap)});
+  document.getElementById("call-budget").addEventListener("input",renderPriorities);
+  document.getElementById("freq-cap").addEventListener("change",renderPriorities);
+  document.getElementById("respect-current").addEventListener("change",renderPriorities);
+  document.getElementById("export-audit").addEventListener("click",()=>download("synthetic-demo-event-log.csv",csv([["Time","Event","Details"],...state.events.map(e=>[e.time,e.event,e.detail])])));
+  document.getElementById("export-claims").addEventListener("click",()=>download("synthetic-demo-claims-register.csv",csv([["Claim","Evidence needed","Status","Included in demo"],...claims.map(c=>[c.claim,c.evidence,c.status,state.claims[c.id]?"Yes":"No"])])));
+  document.getElementById("clear-events").addEventListener("click",()=>{state.events=[];persist();renderGovernance();toast("Event log cleared")});
+  document.getElementById("reset").addEventListener("click",()=>{if(confirm("Clear this demo’s saved scenario and local event log, and restore default weights?")){localStorage.removeItem(STORE);location.reload()}});
+  function renderAll(){renderOverview();renderWeightControls();renderEstimates();renderValidation();renderPriorities();renderGovernance()}
+  renderAll();
+})();
+</script>
+</body>
+</html>
